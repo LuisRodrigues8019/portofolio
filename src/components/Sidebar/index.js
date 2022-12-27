@@ -1,9 +1,8 @@
 import './index.scss'
-import AnimatedLetters from '../AnimatedLetters'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, NavLink } from 'react-router-dom'
-import { useState } from 'react'
-import { useEffect } from 'react'
+import LogoL from '../../assets/images/llogo.png'
+import LogoSubtitle from '../../assets/images/Luis10.png'
 import {
   faEnvelope,
   faFolder,
@@ -12,36 +11,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 
-const Sidebar = () => {
-  const [showNav, setShowNav] = useState(false)
+const Sidebar = () => (
 
-  const [letterClass, setLetterClass] = useState('text-animate')
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 3000)
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [])
-
-  return (
     <div className="nav-bar">
       <Link className="logo" to="/">
-        <h1 className="logo-link" alt="initials">
-          {' '}
-          <AnimatedLetters
-            letterClass={letterClass}
-            strArray={'L R'.split('')}
-            idx={15}
-          />
-        </h1>
+        <img src={LogoL} alt='logo' />
+        <img className="sub-logo" src={LogoSubtitle} alt='logo' />
       </Link>
       <nav>
         <NavLink exact="true" activeClassname="active" to="/">
           <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
         </NavLink>
+
         <NavLink
           exact="true"
           activeClassname="active"
@@ -50,6 +31,16 @@ const Sidebar = () => {
         >
           <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
         </NavLink>
+
+        <NavLink
+          exact="true"
+          activeClassname="active"
+          className="portfolio-link"
+          to="/portfolio"
+        >
+          <FontAwesomeIcon icon={faFolder} color="#4d4d4e" />
+        </NavLink>
+
         <NavLink
           exact="true"
           activeClassname="active"
@@ -58,7 +49,7 @@ const Sidebar = () => {
         >
           <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />
         </NavLink>
-        <FontAwesomeIcon icon="fa-light fa-folder" />
+
       </nav>
       <ul>
         <li>
@@ -81,6 +72,6 @@ const Sidebar = () => {
         </li>
       </ul>
     </div>
+
   )
-}
 export default Sidebar
